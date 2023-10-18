@@ -235,4 +235,3 @@ CACHES = {
 }
 
 
-LANGUAGE_CODE = "en-ru"
