@@ -1072,3 +1072,5 @@ TypeError: Order() got unexpected keyword arguments: 'user'
 
 ERROR 2023-10-08 18:47:08,078 basehttp "POST /api/v1/order/orders/ HTTP/1.1" 500 162367
 INFO 2023-10-08 18:48:20,016 autoreload /home/user/final_hakaton/samirkk/config/settings.py changed, reloading.
+INFO 2023-10-18 17:54:26,733 autoreload Watching for file changes with StatReloader
+INFO 2023-10-18 17:55:10,300 autoreload /home/user/final_hakaton/samirkk/config/settings.py changed, reloading.

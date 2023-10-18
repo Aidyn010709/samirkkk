@@ -12,7 +12,7 @@ class QuestionsViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(owner=self.request.user)   # Вытащили только свои Продукты
+        queryset = queryset.filter(owner=self.request.user)
         return queryset
 
     def perform_create(self, serializer):
@@ -26,7 +26,7 @@ class ComplaintViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(owner=self.request.user)   # Вытащили только свои Продукты
+        queryset = queryset.filter(owner=self.request.user)
         return queryset
 
     def perform_create(self, serializer):
@@ -40,7 +40,7 @@ class SendProblemViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(user=self.request.user)   # Вытащили только свои Продукты
+        queryset = queryset.filter(user=self.request.user)
         return queryset
 
     def perform_create(self, serializer):
