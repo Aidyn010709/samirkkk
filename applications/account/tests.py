@@ -41,6 +41,7 @@ class CustomUserModelTest(TestCase):
     def test_str_representation(self):
         self.assertEqual(str(self.user), "testuser@example.com")
 
+
 class MyCacheTestCase(TestCase):
     """
         Тесты для кэша.

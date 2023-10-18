@@ -118,4 +118,3 @@ class Rating(models.Model):
 
 
 
-# Сделать так что бы отправляллось в один пост  несколько image(link) и сделать так что бы менялось моделька apartment + image(link_model) CharField
