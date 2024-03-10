@@ -1074,3 +1074,72 @@ ERROR 2023-10-08 18:47:08,078 basehttp "POST /api/v1/order/orders/ HTTP/1.1" 500
 INFO 2023-10-08 18:48:20,016 autoreload /home/user/final_hakaton/samirkk/config/settings.py changed, reloading.
 INFO 2023-10-18 17:54:26,733 autoreload Watching for file changes with StatReloader
 INFO 2023-10-18 17:55:10,300 autoreload /home/user/final_hakaton/samirkk/config/settings.py changed, reloading.
+INFO 2024-01-22 14:02:51,999 autoreload Watching for file changes with StatReloader
+INFO 2024-01-22 14:03:24,211 autoreload Watching for file changes with StatReloader
+INFO 2024-01-22 14:03:51,033 autoreload Watching for file changes with StatReloader
+WARNING 2024-01-22 14:04:06,161 log Not Found: /
+WARNING 2024-01-22 14:04:06,161 basehttp "GET / HTTP/1.1" 404 2985
+WARNING 2024-01-22 14:04:06,386 log Not Found: /favicon.ico
+WARNING 2024-01-22 14:04:06,387 basehttp "GET /favicon.ico HTTP/1.1" 404 3036
+WARNING 2024-01-22 14:06:37,821 log Unauthorized: /api/v1/account/register/
+WARNING 2024-01-22 14:06:37,838 basehttp "GET /api/v1/account/register/ HTTP/1.1" 401 275
+WARNING 2024-01-22 14:06:44,128 log Unauthorized: /api/v1/account/register/
+WARNING 2024-01-22 14:06:44,128 basehttp "POST /api/v1/account/register/ HTTP/1.1" 401 275
+WARNING 2024-01-22 14:06:55,885 log Bad Request: /api/v1/account/register/
+WARNING 2024-01-22 14:06:55,885 basehttp "POST /api/v1/account/register/ HTTP/1.1" 400 149
+WARNING 2024-01-22 14:07:33,985 log Bad Request: /api/v1/account/register/
+WARNING 2024-01-22 14:07:33,985 basehttp "POST /api/v1/account/register/?email=oop@oop.com&password=123456&password2=123456 HTTP/1.1" 400 149
+WARNING 2024-01-22 14:07:44,122 log Bad Request: /api/v1/account/register/
+WARNING 2024-01-22 14:07:44,123 basehttp "POST /api/v1/account/register/?email=oop@oop.com&password=123456&password2=123456 HTTP/1.1" 400 149
+ERROR 2024-01-22 14:08:06,971 log Internal Server Error: /api/v1/account/register/
+Traceback (most recent call last):
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/user/.local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "/home/user/.local/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/user/.local/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/user/.local/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/user/.local/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/user/.local/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/user/Desktop/SAMIRKK/samirkkk/applications/account/views.py", line 19, in post
+    serializer.save()
+  File "/home/user/.local/lib/python3.10/site-packages/rest_framework/serializers.py", line 212, in save
+    self.instance = self.create(validated_data)
+  File "/home/user/Desktop/SAMIRKK/samirkkk/applications/account/serializers.py", line 26, in create
+    send_activation_code(user.email, user.activation_code)
+  File "/home/user/Desktop/SAMIRKK/samirkkk/applications/account/utils.py", line 17, in send_activation_code
+    email_message.attach_file('/home/user/final_hakaton/samirkk/emailimages/samirkk_.png')
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/mail/message.py", line 352, in attach_file
+    with path.open("rb") as file:
+  File "/usr/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/final_hakaton/samirkk/emailimages/samirkk_.png'
+ERROR 2024-01-22 14:08:06,974 basehttp "POST /api/v1/account/register/ HTTP/1.1" 500 120477
+INFO 2024-01-22 14:08:45,831 autoreload Watching for file changes with StatReloader
+WARNING 2024-01-22 14:08:58,000 log Bad Request: /api/v1/account/register/
+WARNING 2024-01-22 14:08:58,002 basehttp "POST /api/v1/account/register/ HTTP/1.1" 400 87
+INFO 2024-01-22 14:09:50,688 autoreload Watching for file changes with StatReloader
+INFO 2024-01-22 14:10:11,012 basehttp "POST /api/v1/account/register/ HTTP/1.1" 201 140
+INFO 2024-01-22 14:10:53,856 basehttp "GET /api/v1/account/activate/df4896c9-b56c-43ca-92c2-de6b17087633 HTTP/1.1" 301 0
+INFO 2024-01-22 14:10:54,106 basehttp "GET /api/v1/account/activate/df4896c9-b56c-43ca-92c2-de6b17087633/ HTTP/1.1" 200 5523
+INFO 2024-01-22 14:10:54,239 basehttp "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2024-01-22 14:10:54,252 basehttp "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+INFO 2024-01-22 14:10:54,261 basehttp "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2024-01-22 14:10:54,261 basehttp "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2024-01-22 14:10:54,261 basehttp "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+INFO 2024-01-22 14:10:54,262 basehttp "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+INFO 2024-01-22 14:10:54,264 basehttp "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+INFO 2024-01-22 14:10:54,285 basehttp "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2024-01-22 14:10:54,286 basehttp "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2024-01-22 14:10:54,287 basehttp "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2024-01-22 14:10:54,309 basehttp "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2024-01-22 14:10:55,752 log Not Found: /api/v1/account/activate/df4896c9-b56c-43ca-92c2-de6b17087633/
+WARNING 2024-01-22 14:10:55,753 basehttp "GET /api/v1/account/activate/df4896c9-b56c-43ca-92c2-de6b17087633/ HTTP/1.1" 404 5581

@@ -14,7 +14,7 @@ def send_activation_code(email, code):
         [email],
     )
 
-    email_message.attach_file('/home/user/final_hakaton/samirkk/emailimages/samirkk_.png')
+    email_message.attach_file('/home/user/Desktop/SAMIRKK/samirkkk/emailimages/samirkk_.png')
 
     email_message.send()
 

@@ -8,6 +8,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework import status
 from .utils import send_activation_code
 from applications.account.serializers import *
+from rest_framework import generics
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
 
 User = get_user_model()
 
@@ -85,3 +89,31 @@ class OwnerUserApartmentAPIView(APIView):
             return Response({'message': 'Поздравляю Вы теперь являетесь Хозяином!'}, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+class UserInfoAPIView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer  # Замените на ваш сериализатор пользователя
+
+    def get_object(self):
+        # Возвращает текущего пользователя
+        return self.request.user
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+    
+class OwnerApartmentInfoByEmailView(generics.RetrieveAPIView):
+    serializer_class = OwnerApartmentProfileSerializer
+
+    def get(self, request, *args, **kwargs):
+        email = self.kwargs.get('email')  # Получаем адрес электронной почты из URL
+
+        try:
+            owner_apartment_user = User.objects.get(email=email, is_owner=True)
+            serializer = self.serializer_class(owner_apartment_user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'detail': 'Владелец квартиры с указанным email не найден.'}, status=status.HTTP_404_NOT_FOUND)
+        

@@ -6,6 +6,19 @@ from applications.account.utils import send_activation_code, send_forgot_passwor
 User = get_user_model()
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'surname', 'phone_number', 'date_of_birth', 'is_owner']
+
+
+class OwnerApartmentProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'surname', 'phone_number', 'date_of_birth', 'is_owner', 'where_studied', 'profession', 'interesting_fact', 'hobbies',
+                  'languages_spoken', 'location', 'description']
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(required=True, min_length=6, write_only=True)
 
