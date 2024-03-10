@@ -5,7 +5,7 @@ from django.core.mail import EmailMessage
 
 
 def send_activation_code(email, code):
-    message = f'Перейдите по этой ссылке чтобы активировать аккаунт: \n\n http://35.198.109.24/api/v1/account/activate/{code}'
+    message = f'Перейдите по этой ссылке чтобы активировать аккаунт: \n\n https://sss.samirkk.com/api/v1/account/activate/{code}'
 
     email_message = EmailMessage(
         'Samirkk',
@@ -14,7 +14,7 @@ def send_activation_code(email, code):
         [email],
     )
 
-    email_message.attach_file('/home/user/Desktop/SAMIRKK/samirkkk/emailimages/samirkk_.png')
+    email_message.attach_file('/home/sassassas107/samirkkk/emailimages/samirkk_.png')
 
     email_message.send()
 
