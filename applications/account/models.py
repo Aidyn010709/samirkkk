@@ -49,12 +49,20 @@ class CustomUser(AbstractUser):
     surname = models.CharField(max_length=30, blank=False)
     phone_number = models.CharField(max_length=15, blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
+    where_studied = models.CharField(max_length=100, blank=True, null=True)
+    profession = models.CharField(max_length=100, blank=True, null=True)
+    interesting_fact = models.CharField(max_length=255, blank=True, null=True)
+    hobbies = models.CharField(max_length=100, blank=True, null=True)
+    languages_spoken = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     username = None
     is_active = models.BooleanField(default=False)
     is_owner = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
     objects = CustomUserManager()
 
     def __str__(self):
@@ -64,5 +72,3 @@ class CustomUser(AbstractUser):
         import uuid
         code = str(uuid.uuid4())
         self.activation_code = code
-
-

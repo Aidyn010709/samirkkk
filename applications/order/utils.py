@@ -5,7 +5,7 @@ def send_order_email(email, code, name):
     send_mail(
         'Samirkk',
         f'Привет, перейди по этому пути что бы подвердить покупку: '
-        f' \n\n https://sss.samirkk.com/api/v1/order/activate/{code}',
+        f' \n\n https://api.samirkk.com/order/activate/{code}',
         'sassassas107@gmail.com',
         [email]
     )

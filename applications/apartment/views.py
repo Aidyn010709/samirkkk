@@ -2,7 +2,7 @@ from django.shortcuts import render
 import logging
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.views import View
-from rest_framework import viewsets, status, generics
+from rest_framework import viewsets, status, generics, exceptions
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.views import APIView
@@ -61,7 +61,10 @@ class ApartmentAPIVIew(viewsets.ModelViewSet):
     @action(methods=['POST'], detail=True)
     def like(self, request, pk, *args, **kwargs):
         user = request.user
-        like_obj, _ = Like.objects.get_or_create(owner=user, apartment_id=pk)
+        try:
+            like_obj, _ = Like.objects.get_or_create(owner=user, apartment_id=pk)
+        except:
+            return Response({"message": "Apartment not found"}, status=404)
         like_obj.is_like = not like_obj.is_like
         like_obj.save()
         like_status = 'liked'
@@ -74,8 +77,10 @@ class ApartmentAPIVIew(viewsets.ModelViewSet):
     def favorite(self, request, pk, *args, **kwargs):
         # logger = logging.getLogger(__name__)
         user = request.user
-
-        favorite_obj, _ = Favorite.objects.get_or_create(owner=user, apartment_id=pk)
+        try:
+            favorite_obj, _ = Favorite.objects.get_or_create(owner=user, apartment_id=pk)
+        except:
+            return Response({"message": "Apartment not found"}, status=404)
         favorite_obj.is_favorite = not favorite_obj.is_favorite
         favorite_obj.save()
         status = 'favorites'
@@ -89,7 +94,10 @@ class ApartmentAPIVIew(viewsets.ModelViewSet):
         user = request.user
         serializer = RatingSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        rating_obj, _ = Rating.objects.get_or_create(owner=request.user, post_id=pk)
+        try:
+            rating_obj, _ = Rating.objects.get_or_create(owner=request.user, post_id=pk)
+        except:
+            return Response({"message": "Apartment not found"}, status=404)
         rating_obj.rating = serializer.data['rating']
         rating_obj.save()
         return Response(serializer.data)
@@ -136,15 +144,6 @@ class CommentModelViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
-
-class ImageModelViewSet(mixins.CreateModelMixin,
-                        mixins.DestroyModelMixin,
-                        viewsets.GenericViewSet):
-    queryset = PostImage.objects.all()
-    serializer_class = PostImageSerializer
-    permission_classes = [IsOwnerOrAdminOrReadOnly]
-
 
 class UserActionHistoryAPIView(APIView):
     def get(self, request, name):

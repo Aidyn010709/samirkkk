@@ -33,7 +33,6 @@ class Apartment(models.Model):
     title = models.CharField('Название', max_length=75)
     location = models.CharField('Локация', max_length=40)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
-    price_dollar = models.DecimalField('Цена в долларах', max_digits=10, decimal_places=2, blank=True, null=True)
     education = models.CharField('Характеристики что есть', max_length=100)
     description = models.TextField('Описание')
     count_views = models.PositiveIntegerField('Количество просмотров', default=0)
@@ -43,21 +42,6 @@ class Apartment(models.Model):
 
     def __str__(self):
         return f'{self.title}'
-
-
-class PostImage(models.Model):
-    """
-        Картинки к постам
-    """
-    image = models.ImageField(upload_to='images/')
-    post = models.ForeignKey(
-        Apartment, on_delete=models.CASCADE,
-        related_name='images'
-    )
-
-    def __str__(self):
-        return f'{self.title}'
-
 
 class Comment(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments', help_text='Автор комментария')

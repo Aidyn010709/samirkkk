@@ -37,10 +37,10 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger')),
-    path('api/v1/account/', include('applications.account.urls')),
-    path('api/v1/apartment/', include('applications.apartment.urls')),
-    path('api/v1/order/', include('applications.order.urls')),
-    path('api/v1/spam/', include('applications.spam.urls')),
-    path('api/v1/help-center/', include('applications.helpcenter.urls')),
-    path('api/v1/giftcard/', include('applications.giftcard.urls')),
+    path('account/', include('applications.account.urls')),
+    path('apartment/', include('applications.apartment.urls')),
+    path('order/', include('applications.order.urls')),
+    path('spam/', include('applications.spam.urls')),
+    path('help-center/', include('applications.helpcenter.urls')),
+    path('giftcard/', include('applications.giftcard.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -9,7 +9,6 @@ router = DefaultRouter()
 
 router.register('category', CategoryModelViewSet)
 router.register('comments', CommentModelViewSet)
-router.register('image', ImageModelViewSet)
 router.register('', ApartmentAPIVIew, basename='apartment')
 
 urlpatterns = [

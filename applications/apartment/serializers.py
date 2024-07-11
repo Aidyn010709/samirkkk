@@ -45,21 +45,6 @@ class FavoriteSerializer(serializers.ModelSerializer):
         model = Favorite
         fields = '__all__'
 
-
-class PostImageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PostImage
-        fields = '__all__'
-
-
-class PostImageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = PostImage
-        fields = '__all__'
-
-
 class ApartmentAmenitySerializer(serializers.ModelSerializer):
     class Meta:
         model = ApartmentAmenity
@@ -70,7 +55,6 @@ class ApartmentSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
     amenities = serializers.SerializerMethodField()
     comments = CommentSerializer(many=True, read_only=True)
-    images = PostImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Apartment
@@ -80,21 +64,7 @@ class ApartmentSerializer(serializers.ModelSerializer):
         apartment = Apartment.objects.create(**validated_data)
         request = self.context.get('request')
         files = request.FILES
-
-        try:
-            dollar_rate = DollarRate.objects.latest('id')
-            usd_rate = dollar_rate.rate
-        except DollarRate.DoesNotExist:
-            usd_rate = 1  # Default rate in case no DollarRate instances exist
-
-        validated_data['price_dollar'] = validated_data['price'] / usd_rate  # Calculate price_dollar
-        apartment = Apartment.objects.create(**validated_data)
-
-        image_objects = []
-        for file in files.getlist('images'):
-            PostImage.objects.create(apartment=apartment, image=file)
-        PostImage.objects.bulk_create(image_objects)
-
+        
         return apartment
 
     def get_amenities(self, instance):
@@ -138,15 +108,6 @@ class ApartmentSerializer(serializers.ModelSerializer):
         else:
             average_rating = 0
         rep['rating'] = average_rating
-
-        # Попробуем получить последний сохраненный курс доллара
-        try:
-            dollar_rate = DollarRate.objects.latest('id')
-            usd_rate = dollar_rate.rate
-            rep['dollar_rate'] = usd_rate  # Добавляем поле с курсом доллара в JSON
-        except DollarRate.DoesNotExist:
-            usd_rate = None
-            rep['dollar_rate'] = 'не найдено'  # Сообщение "не найдено" вместо курса
 
         return rep
 

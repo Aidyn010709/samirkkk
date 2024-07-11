@@ -13,7 +13,7 @@ class IsOwnerOrAdminOrReadOnly(BasePermission):
 
 class IsOwnerOrAdminOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
+        if request.user and request.user.is_owner:
             return True
 
         if request.user and request.user.is_staff:
@@ -24,7 +24,7 @@ class IsOwnerOrAdminOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.user == request.user or request.user.is_staff
+        return request.user == obj.owner or request.user.is_staff 
 
 
 class CanCreateUpdateDeleteTicket(permissions.BasePermission):
