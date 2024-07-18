@@ -34,6 +34,9 @@ class Apartment(models.Model):
     location = models.CharField('Локация', max_length=40)
     price = models.DecimalField('Цена', max_digits=10, decimal_places=2)
     education = models.CharField('Характеристики что есть', max_length=100)
+    image = models.ImageField(
+        verbose_name="Фотография", upload_to="images/", null=True, blank=True
+    )
     description = models.TextField('Описание')
     count_views = models.PositiveIntegerField('Количество просмотров', default=0)
     amenities = models.ManyToManyField(ApartmentAmenity, related_name='apartments', blank=True)
