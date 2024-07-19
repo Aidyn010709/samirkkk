@@ -25,9 +25,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Samirkk",
+      title="API made with love <3",
       default_version='v1',
-      description="Contacs is we",
+      description="Contacts: tg @Backspyz, phone: +996707608037",
       contact=openapi.Contact(email="samirkk@gmail.com"),
    ),
    public=True,
